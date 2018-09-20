@@ -40,7 +40,6 @@ class DefaultController extends Controller
             $formData['category'] = $categories[$formData['category']];
             $formData['joke'] = $incdb->getJokeFromCategory([$formData['category']]);
 
-            /** @var $userJoke UserJokesRepository */
             $userJoke = $this->getDoctrine()->getRepository(UserJokes::class)->setUserJoke($formData);
             if (null !== $userJoke->getId()) {
                 $message = Swift_Message::newInstance()
