@@ -32,7 +32,7 @@ class UserJokesRepository extends EntityRepository
             $userJoke->setJoke($formData['joke']);
             $userJoke->setUser($user);
             $userJoke->setUserId($user->getId());
-            $userJoke->setSendedDate(new \DateTime("now"));
+            $userJoke->setSendedDate(new \DateTime('now'));
 
             $this->_em->persist($userJoke);
             $this->_em->flush();

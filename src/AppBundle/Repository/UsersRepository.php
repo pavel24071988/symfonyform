@@ -34,7 +34,7 @@ class UsersRepository extends EntityRepository
     private function userCreate(string $email): Users
     {
         $user = new Users;
-        $user->setCreated(new \DateTime("now"));
+        $user->setCreated(new \DateTime('now'));
         $user->setEmail($email);
 
         $this->_em->persist($user);

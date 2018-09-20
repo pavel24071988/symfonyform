@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Repository\UserJokesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +20,7 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      *
      * @param Request $request
+     * @param Swift_Mailer $mailer
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -54,7 +54,7 @@ class DefaultController extends Controller
                         'text/html'
                     );
                 $mailer->send($message);
-            };
+            }
         }
 
         return $this->render('default/index.html.twig', array(

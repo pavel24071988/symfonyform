@@ -10,32 +10,30 @@ namespace Tests\AppBundle\Services;
 
 use AppBundle\Services\GuzzleService;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class GuzzleServiceTest extends TestCase
 {
-    private $category = [
+    private const category = [
         'method' => 'GET',
         'url' => 'http://api.icndb.com/categories',
         'params' => []
     ];
 
-    private $joke = [
+    private const joke = [
         'method' => 'GET',
         'url' => 'http://api.icndb.com/jokes/random',
-        'params' => [
-            'limitTo' => [
-                'nerdy',
-                'explicit'
-            ]
-        ]
+        'params' => []
     ];
 
     /**
      * @covers \AppBundle\Services\GuzzleService::getGuzzleResponse
+     *
+     * @throws GuzzleException
      */
-    public function testResponce()
+    public function testResponse(): void
     {
-        $guzzle = new GuzzleService($this->category['url'], $this->category['method'], $this->category['params']);
+        $guzzle = new GuzzleService(self::category['url'], self::category['method'], self::category['params']);
         $categories = $guzzle->getGuzzleResponse();
 
         $this->assertNotEmpty($categories);
@@ -48,7 +46,7 @@ class GuzzleServiceTest extends TestCase
         $this->assertSame('success', $categories->type);
 
         foreach ($categories->value as $category) {
-            $guzzle = new GuzzleService($this->joke['url'], $this->joke['method'], ['limitTo' => [$category]]);
+            $guzzle = new GuzzleService(self::joke['url'], self::joke['method'], ['limitTo' => [$category]]);
             $joke = $guzzle->getGuzzleResponse();
 
             $this->assertNotEmpty($joke);

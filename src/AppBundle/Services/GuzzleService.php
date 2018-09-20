@@ -38,8 +38,6 @@ class GuzzleService
     {
         $client = new Client();
         $res = $client->request($this->method, $this->url, [$this->params]);
-        $status = $res->getStatusCode();
-        $type = $res->getHeader('content-type');
         return $res;
     }
 }

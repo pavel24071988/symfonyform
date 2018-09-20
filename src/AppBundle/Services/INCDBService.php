@@ -27,8 +27,8 @@ class INCDBService
     }
 
     /**
-     * @param string
-     * @return \Psr\Http\Message\StreamInterface
+     * @param array $category
+     * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getJokeFromCategory(array $category): string

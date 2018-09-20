@@ -10,13 +10,16 @@ namespace Tests\AppBundle\Services;
 
 use AppBundle\Services\INCDBService;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class INCDBServiceTest extends TestCase
 {
     /**
      * @covers \AppBundle\Services\INCDBService::getCategories
+     *
+     * @throws GuzzleException
      */
-    public function testCategory()
+    public function testCategory(): void
     {
         $incdb = new INCDBService();
         $result = $incdb->getCategories();
